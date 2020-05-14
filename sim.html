@@ -1,0 +1,179 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="sim.css">
+</head>
+<body>
+    <div  class = fullpage>
+        <ul class = nav>
+            <li><a href = "index.html">Home</a></li>
+            <li><a href = "integral.html">Integral</a></li>
+            <li>Sim</li>
+        </ul> 
+    
+    <h1>Motion Simulator</h1>
+    </div>
+    
+    <div>
+        <div class = codebox>
+            import math
+import time
+import pygame.freetype
+
+pygame.init()
+pygame.font.init()
+
+textfont = pygame.freetype.Font("OpenSans-Bold.ttf", 24)
+sec = 0
+hitime = 0
+hitrange = 0
+m = 20
+bruh = 0
+xs = 0
+ys = 410
+a = 9.81 * 10
+ivy = 0
+degree = 45
+xyvel = 17 * m
+xvel = 0
+Height = 100
+x1 = 50
+y1 = 410
+y = 0
+x = 0
+appear = 0
+secstop = 0
+hitime1 = 0
+hitrange1 = 0
+pos = 0
+starty = 450
+startx = 0
+movement = False
+hpoint= 0
+bg = pygame.image.load("background.png")
+floor = pygame.image.load("floor.png")
+#cannon = pygame.image.load("cannon.jpg")
+floor = pygame.transform.scale(floor, (10000, 50))
+#cannon = pygame.transform.scale(cannon,(200,100))
+hit = False
+fullmode = False
+border = 10
+
+screen = pygame.display.set_mode((1000, 500))
+pygame.display.set_caption("Motion Sim")
+
+run = True
+
+while run == True:
+
+
+
+    screen.fill((0, 0, 0))
+    screen.blit(bg, (0, 0))
+    screen.blit(floor, (0, 450))
+    #screen.blit(cannon,(-30,400))
+    textfont.render_to(screen, (800, 4), "Meters: " + str(hitrange1), (0, 0, 0))
+    textfont.render_to(screen, (800, 32), "Seconds: " + str(hitime1), (0, 0, 0))
+    textfont.render_to(screen, (800, 60), "Degree: " + str(int(degree)), (0, 0, 0))
+    textfont.render_to(screen, (800, 88), "Height: " + str(int(Height / m)), (0, 0, 0))
+    adjustbar = pygame.draw.rect(screen , (225,225,225),(800 - border , 120 , 200 , 20))
+
+
+
+    radians = degree * math.pi / 180
+    for events in pygame.event.get():
+
+        if events.type == pygame.MOUSEBUTTONUP:
+            pos = pygame.mouse.get_pos()
+            xpos = pos[0]
+            ypos = pos[1]
+
+            xdistance = xpos - x1
+            ydistance = ypos - y1
+
+            trig = ydistance / xdistance
+
+            degree = -(math.degrees(math.atan(trig)))
+
+            if xpos &lt x1:
+                degree = 90
+            if ypos &gt y1:
+                degree = 0
+            if  xpos &lt x1 and ypos &gt y1:
+                degree = 0
+
+            if ypos &gt  120 and ypos &lt 120 + 20 and xpos &gt 800 - border and 800 - border + 20:
+                Height = xpos -(800 - border)
+                degree = 45
+
+
+
+
+        if events.type == pygame.QUIT:
+            run = False;
+        #cannon = pygame.transform.rotate(cannon, degree)
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_SPACE]:
+        movement = True
+        xvel = (math.cos(radians) * xyvel)
+        ivy = -(math.sin(radians) * xyvel)
+        hpoint1 = ((ivy * ((-ivy / a)/2) / m)/2)
+        hpoint = hpoint1 - hpoint1 * 2
+
+
+        bruh = pygame.time.get_ticks() / 1000
+        appear = 40
+    if movement:
+        sec = pygame.time.get_ticks() / 1000
+
+    actsec = sec - bruh
+
+    if y == 410 + Height and x &gt 50:
+        hit = True
+
+    if hit:
+        hitime = sec - bruh
+        hitime1 = round(hitime, 3)
+        hitrange = (x - x1) / m
+        hitrange1 = round(hitrange, 3)
+        x = x1 + xvel * hitime
+        xvel = 0
+        hit = False
+        if hpoint &gt hitrange:
+           fullmode = True
+        time.sleep(1)
+
+    if fullmode:
+        pygame.display.set_mode((int(hitrange*20),int(hpoint*20)))
+
+    yvel = ivy + a * actsec
+    y = y1 + yvel * actsec
+    x = x1 + xvel * actsec
+
+    print(hitrange,hpoint*20)
+
+
+
+    if y &gt 410 + Height:
+        y = 410 + Height
+
+
+
+    bar = pygame.draw.rect(screen , (220,220,220), (startx ,starty - Height , 100 , Height))
+    circle = pygame.draw.circle(screen, (0, 0, 225), (int(x), int(y) - Height), appear)
+
+
+
+
+
+    pygame.display.flip()
+
+    pygame.time.delay(1)
+
+        
+        
+        </div>
+  
+    </div>
+</body>
+</html>

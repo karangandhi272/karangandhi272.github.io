@@ -1,0 +1,73 @@
+    
+    *{
+        font-family: "Courier New"
+    }
+    
+    body,html{
+        margin: 0;
+    }
+    
+    .fullpage{
+        height: 100vh;
+        background-color:deepskyblue;
+        margin: 0;
+        
+    }
+    
+    .nav{
+        margin: 0;
+        list-style: none;
+        font-weight: bold;
+        position: fixed;
+        width: 100%;
+
+    }
+    
+    .nav li{
+        padding: 28px;
+        border-radius: 10px;
+        display:inline-block;
+        
+    }
+    
+    
+    .fullpage h1{
+        position: absolute;
+        top:50%;
+        margin:0;
+        width: 100%;
+        text-align: center;
+        font-size: 45px;
+        font-weight: bold;
+
+
+           
+    }
+    
+    
+    .para{
+        
+        margin-left: 25%;
+        margin-right: 25%;
+        text-align: center;
+        word-wrap: break-word;
+
+    }
+    
+    .nav li:hover{
+        background-color: lightgrey;
+    }
+    
+    .nav li a{
+        text-decoration: none;
+        color: inherit;
+
+    }
+
+    .para p{
+        color: gray;
+    }
+    
+
+    
+    

@@ -1,0 +1,129 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="integral.css">
+</head>
+<body>
+    <div  class = fullpage>
+        <ul class = nav>
+            <li><a href="index.html">Home</a></li>
+            <li>Integral</li>
+            <li><a href = "sim.html">Sim</a></li>
+        </ul> 
+    
+    <h1>Integral</h1>
+    </div>
+    
+    <div class = para>
+        <h2>Solving area below the equation</h2>
+        <p>The method that we use to find the area is by dividing the area into multiple small parts and find the area of each part and adding them togethor to find the total area.This only works if the funtion is linear or has a degree of 2 </p>
+    </div>
+    <div class = image>
+        <div class = img>
+                <img  src="integral.png">
+                <p>In the image above its shows the area below the curve by finding the length of the right side. The total area is clearly inaccurate because som exceed the curve and some go below the curve. But we can make the area more accurate by adding more smaller areas under the curve.  </p>
+            </div>
+        <div class = p>
+            <p>First go to the python program and create a new file. Then save wherever you prefer. We need to ask the user if the funtion is linear or quadratic. So we can pick the base funtion such as "ax + b". Then we need to ask the user for the upperbound and lowerbound so we can find the area between those two varibles. </p>
+            <div class= codebox >
+               type = input("is your function linear or quadratic")
+                
+                ub = int(input("what is your upperbound"))
+                lb = int(input("what is your lowerbound"))       
+            </div>
+            
+            <p>The text in the quotations is the question. The input command lets the user respond to the text and the varibles on the left of the equal sign stores the user's response. We added a "int" cast to turn the string into a integer </p>
+            
+            <div class= codebox>
+                dif = ub - lb
+
+                rect = int(input("how many rectangles do you want"))
+
+                if type == "linear":
+                &nbsp;&nbsp;a = int(input("what is a"))
+                &nbsp;&nbsp;b = int(input("what is b"))
+
+                if type == "quadratic":
+                &nbsp;&nbsp;a = int(input("what is a"))
+                &nbsp;&nbsp;b = int(input("what is b"))
+                &nbsp;&nbsp;c = int(input("what is c"))
+           </div>
+
+        </div>
+    </div>
+    
+    <div class= cont>
+    
+    <p>"dif" is the difference between those to varibles. "rect" is te amount of rectangles the user can choose. The if statements is to pick what the varibles in the funtion will be.   </p>
+    
+    <div class = codebox>
+        rectwidth = dif/rect
+        i = lb
+        totalarea = 0    
+    </div>
+    <p>the "rectwidth" is the find the width of each rectangle. We let "i" to be the lower bound so it starts creating rectangles from there since we want it to start in the lowerbound. The total area is 0 because we are not adding any areas yet.</p>
+    <div class = codebox>
+        
+        while i &lt; ub:
+        &nbsp;&nbsp;if type == "linear":
+        &nbsp;&nbsp;&nbsp;&nbsp;i  = i + rectwidth
+        &nbsp;&nbsp;&nbsp;&nbsp;length  = a*i + b
+        &nbsp;&nbsp;&nbsp;&nbsp;area = length * rectwidth
+        &nbsp;&nbsp;&nbsp;&nbsp;totalarea = area + totalarea
+
+   &nbsp;&nbsp; if type == "quadratic":
+        &nbsp;&nbsp;&nbsp;&nbsp;i  = i + rectwidth
+        &nbsp;&nbsp;&nbsp;&nbsp;length  = a*i*i+ b*i + c
+        &nbsp;&nbsp;&nbsp;&nbsp;area = length * rectwidth
+        &nbsp;&nbsp;&nbsp;&nbsp;totalarea = area + totalarea 
+        
+        print("your area is " + str(totalarea))
+
+    </div>   
+    <p>We created a while loop to continue creating areas until it reaches the upperbound which is what we want.The only difference in the linear and the quadratic is that base funtion the find the length is different "ax + b" and "ax<sup>2</sup> + bx + c". "i = i + rectwidth" is to keep adding width's so it can go all the way to the upperbound. Since we placed this before all the other commands this will create rectangles on the right side. The length is to find the length where "i" is. The area is the area of each rectangele and the totalarea is the whole area under the curve. Then it prints the totalarea totalarea is casted because it is a integer and it will result in a error. All of the code is provided below. </p>
+    <div class = codebox>
+        type = input("is your function linear or quadratic")
+
+ub = int(input("what is your upperbound"))
+lb = int(input("what is your lowerbound"))
+
+dif = ub - lb
+
+rect = int(input("how many rectangles do you want"))
+
+if type == "linear":
+&nbsp;&nbsp;a = int(input("what is a"))
+&nbsp;&nbsp;b = int(input("what is b"))
+
+if type == "quadratic":
+&nbsp;&nbsp;a = int(input("what is a"))
+&nbsp;&nbsp;b = int(input("what is b"))
+&nbsp;&nbsp;c = int(input("what is c"))
+
+rectwidth = dif/rect
+
+i = lb
+
+totalarea = 0
+
+while i &lb ub:
+        
+&nbsp;&nbsp;if type == "linear":
+&nbsp;&nbsp;&nbsp;&nbsp;i  = i + rectwidth
+&nbsp;&nbsp;&nbsp;&nbsp;length  = a*i + b
+&nbsp;&nbsp;&nbsp;&nbsp;area = length * rectwidth
+&nbsp;&nbsp;&nbsp;&nbsp;totalarea = area + totalarea
+
+&nbsp;&nbsp;if type == "quadratic":  
+&nbsp;&nbsp;&nbsp;&nbsp;i  = i + rectwidth
+&nbsp;&nbsp;&nbsp;&nbsp;length  = a*i*i+ b*i + c
+&nbsp;&nbsp;&nbsp;&nbsp;area = length * rectwidth
+&nbsp;&nbsp;&nbsp;&nbsp;totalarea = area + totalarea
+
+
+print("your area is " + str(totalarea))
+
+        
+        </div>
+    </div>
+</body>
+</html>
