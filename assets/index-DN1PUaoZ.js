@@ -451,7 +451,7 @@ So now we have the embedding layer, the attention layer, and the MLP layer. We r
 This cycle continues until the passage is complete.
 `,IA=`# How Do Old Embedding Models Work?
 
-![Neural Net - Credit: Google for Developers](/images/embeddings/embedding_cover.png)
+![Neural Net - Credit: Google for Developers](/images/embeddings/embedding-cover.png)
 
 
 
