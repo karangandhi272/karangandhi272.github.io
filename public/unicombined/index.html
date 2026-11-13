@@ -561,11 +561,11 @@
 
     <script>
       (function () {
-        // Supabase publishable key: designed to be public. Inserts are limited by RLS
-        // (see supabase/waitlist.sql: insert-only policy for the anon role).
+        // Supabase publishable key: designed to be public. Inserts are limited by RLS.
+        // Writes to the existing public."Waitlist" table ("Email" column).
         var SUPABASE_URL = 'https://nivkfgaujesxpfijhzhq.supabase.co';
         var SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_w3oLMBlVZG1mUuOtzRPaNg_cfleZkMx';
-        var TABLE = 'waitlist';
+        var TABLE = 'Waitlist';
 
         var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -651,7 +651,7 @@
               // Don't ask for the row back: anon has insert-only access (no select).
               Prefer: 'return=minimal'
             },
-            body: JSON.stringify({ email: email }),
+            body: JSON.stringify({ Email: email }),
             signal: controller ? controller.signal : undefined
           })
             .then(function (res) {
